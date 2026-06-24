@@ -4,24 +4,39 @@
   "description": "lovable.dev-style Claude Code environment — shareable plugin",
   "type": "module",
   "bin": {
-    "lovable-claude-plugin": "./install.js"
+    "lovable-claude-plugin": "./dist/install.js"
   },
   "scripts": {
-    "install:global": "node install.js --global",
-    "install:project": "node install.js --project",
-    "uninstall:global": "node install.js --uninstall --global --force",
-    "uninstall:project": "node install.js --uninstall --project --force"
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "npm run build",
+    "install:global": "node dist/install.js --global",
+    "install:project": "node dist/install.js --project",
+    "uninstall:global": "node dist/install.js --uninstall --global --force",
+    "uninstall:project": "node dist/install.js --uninstall --project --force"
   },
   "engines": {
     "node": ">=18"
   },
   "files": [
     ".claude",
-    ".github",
     "CLAUDE.md",
-    "install.js",
-    "README.md"
+    "dist",
+    "README.md",
+    "templates"
   ],
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@vitest/coverage-v8": "^2.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.0.0"
+  },
   "keywords": ["claude-code", "lovable", "plugin", "shadcn", "supabase"],
   "license": "MIT"
 }
