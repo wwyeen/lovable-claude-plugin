@@ -404,7 +404,9 @@ enabled = true
 
 ### Step 6 — Copy GitHub Actions workflows
 
-Copy the three CI/CD workflow templates from `.github/workflows/` in this environment repo into the new project's `.github/workflows/` directory.
+Copy the CI/CD workflow templates from `templates/workflows/` in this environment repo into the new project's `.github/workflows/` directory.
+
+Copy all three files: `ci.yml` (from `.github/workflows/`), `deploy.yml`, and `preview.yml` (both from `templates/workflows/`).
 
 ### Step 7 — Verify build
 
