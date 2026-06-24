@@ -1,0 +1,67 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev)",
+      "Bash(npm run build)",
+      "Bash(npm run lint)",
+      "Bash(npm run lint:fix)",
+      "Bash(npm run test)",
+      "Bash(npm run test:run)",
+      "Bash(npm run test:ui)",
+      "Bash(npm run test:coverage)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run preview)",
+      "Bash(npm install *)",
+      "Bash(npm install --save-dev *)",
+      "Bash(npm ci)",
+      "Bash(npx shadcn@latest add *)",
+      "Bash(npx shadcn@latest init)",
+      "Bash(npx create-vite@latest *)",
+      "Bash(npx vercel *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git init)",
+      "Bash(supabase start)",
+      "Bash(supabase stop)",
+      "Bash(supabase status)",
+      "Bash(supabase db push)",
+      "Bash(supabase db reset)",
+      "Bash(supabase migration new *)",
+      "Bash(supabase migration list)",
+      "Bash(supabase functions serve *)",
+      "Bash(supabase functions deploy *)",
+      "Bash(supabase gen types typescript *)",
+      "Bash(node *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && npm run lint:fix --silent 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && npm run typecheck --silent 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
